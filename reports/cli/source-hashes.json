@@ -1,0 +1,15 @@
+{
+  "pyproject.toml": "982ee386412173b76ef606a5c1e5c428c4864b746cb5c5bf2cfa0d7b7759f769",
+  "src/selective_multimodal/video/__init__.py": "69f6a9ea76b949fcc4f21680ae938f0beccba18189c4930b79bc07c165eea9e6",
+  "src/selective_multimodal/video/backends.py": "2d07ec29bfecb0624ca4239da29e9d2aedbae56c6facc1648d0280d98492955f",
+  "src/selective_multimodal/video/cli.py": "05f3ea3e9a280c1927c4e338d321a195bec4c5f0519ff998ca0ddd58de2a2c3a",
+  "src/selective_multimodal/video/config.py": "c69eb881d0470eece28f58550902c8fce5b7aa9a2e01c410c9663758878b45fd",
+  "src/selective_multimodal/video/diagnostics.py": "f01b61fe1d4042a679b51eb6803b4404343956dd66467053ad209210fe1e5145",
+  "src/selective_multimodal/video/jobs.py": "37db21a8ff6018c6bb5da19777a52384d75ddb26ad571327d6c5a619d51d6bd8",
+  "src/selective_multimodal/video/media.py": "b2669240dd42ff1acfa51f3a20c83f78831ed46852222dfb2d2c71736d6ccc06",
+  "src/selective_multimodal/video/pipeline.py": "2010978b6bc4b2bd298d5d8dd3febb061008dfa34bddeff107054cced3d87bec",
+  "src/selective_multimodal/video/reports.py": "95ef46536f2d39b4105b4c8560041d014c1beb0531cbee524f47d7b7e23f0206",
+  "src/selective_multimodal/video/storage.py": "b1a49714a4b42321e2ae2b7a8349756bcaa6e972132148f65485dcbdb7302f61",
+  "tests/test_video.py": "b06810754065ac0c2cd6b5c656d7fe5c9f8a1e1e3a1c33bddd0a3f4a8aa9f1fe",
+  "tests/test_video_tool.py": "410bb607d0b8b2966b046dc6698e0cf443d3f2bec159172047f2ad558bb5a542"
+}

@@ -1,43 +1,50 @@
 # ModalEnough
 
-ModalEnough predicts sentiment from a video review and records which inputs it needed. It starts with a speech transcript, then can request native audio analysis or sampled video frames if the evidence is still uncertain. Every stage has an effort cost; the pipeline can stop early or abstain.
+ModalEnough analyses video reviews from the command line. Give it a clip or a folder; it produces a sentiment prediction or abstention, saves the evidence, and shows which inputs contributed to the answer.
 
-Whisper transcribes speech, RoBERTa classifies the words, and a quantized Qwen2.5-Omni model handles audio and frames on an NVIDIA GPU. Processing runs locally by default. Claude is an optional backend for acquired transcripts and images.
+Whisper transcribes speech and RoBERTa scores the words. When more evidence is needed, a quantized Qwen2.5-Omni model analyses audio windows and sampled frames on an NVIDIA GPU. A budget controls how far it can go. Processing is local by default; Claude is an optional, explicitly selected backend.
 
 ## Install
 
-Use Python 3.11+ and install FFmpeg with `ffmpeg` and `ffprobe` on PATH.
+Use Python 3.11+ and put FFmpeg/FFprobe on PATH. Install CUDA-enabled PyTorch first if you want native audio and frame analysis; the [video guide](docs/video.md) includes the tested Windows command.
 
 ```bash
 python -m venv .venv
-# Activate .venv, then:
-python -m pip install -e ".[dev,video]"
-python -m selective_multimodal.video.cli download-models
+# Activate .venv, then run from this checkout:
+python -m pip install -e ".[video]"
+modalenough config init
+modalenough download-models
+modalenough doctor
 ```
 
-Native audio/frame inference needs CUDA-enabled PyTorch. The tested setup uses an RTX 5060 Ti, PyTorch 2.9.0, and CUDA 12.8; the [video guide](docs/video.md) has the Windows command and CPU-only text option.
+For CPU transcript processing, use `download-models --text-only`, then `doctor --text-only --device cpu`.
 
-## Analyse a review
+## Analyse reviews
 
 ```bash
-python -m selective_multimodal.video.cli predict review.mp4 --budget 0.55 --output runs/review.json
-python -m selective_multimodal.video.cli predict review.mp4 --all
+modalenough predict review.mp4
+modalenough batch ./reviews --recursive --output-dir ./results/run-01
+modalenough batch --resume ./results/run-01
 ```
 
-Use an English video up to three minutes long. The JSON output contains the sentiment or abstention, class scores, acquired inputs, transcript, frame timestamps, stage timings, costs, and stopping reason. Extracted evidence stays under ignored `runs/` directories.
+A batch keeps models loaded between videos, continues past failed clips, and saves its state after each job. Ctrl+C preserves completed work; resume retries the interrupted video. Failed or degraded jobs need `--retry-failed`. Input hashes prevent stale results from being reused after a file changes.
 
-Text costs 0.20 effort units, additional audio understanding 0.35, and frames 0.45. These are budget units, not dollars or measured compute savings. Text includes audio decoding and transcription. The first native request prepares a smaller model cache, so cold and warm timings differ considerably.
-
-To use Claude, set `ANTHROPIC_API_KEY` in your environment and pass `--backend claude`. Only acquired transcripts, frames, and any existing audio-model summary are sent to Anthropic. Speech processing stays local. `.env.example` lists settings without loading them automatically; never commit a real key.
-
-## Evaluation
+Each video gets a readable Markdown report, strict JSON, and its acquired evidence. The batch directory also contains CSV and Markdown summaries, a manifest, and an incremental event log. Use `--json` for machine-readable stdout; progress goes to stderr.
 
 ```bash
-python -m pytest -q
+modalenough predict review.mp4 --text-only --device cpu --output result.json
+modalenough predict review.mp4 --budget 0.55 --json
+modalenough batch ./reviews --all --output-dir ./results/full-pass
 ```
 
-The video pipeline currently uses confidence-based acquisition. Its scores have not been calibrated on real reviews, and benchmark sentiment accuracy has not been established. The separate learned-policy experiment and its saved results are documented in the [synthetic benchmark guide](docs/synthetic.md).
+Settings live in a user-level TOML file and work from any directory. `config show` displays effective values; command flags override environment settings and the file. See the [CLI reference](docs/cli.md) for paths, resume rules, exit codes, and troubleshooting.
 
-The text model was trained on tweets, audio uses up to three 10-second windows, and vision samples four frames. Sarcasm, mixed opinions, language differences, and transcription errors can mislead the system. Silent footage alone produces an abstention.
+## What the result means
 
-See [video setup and method](docs/video.md), [smoke evidence](reports/video/README.md), and the [prior-work review](docs/prior_work.md). Source is MIT; downloaded models retain their own licences, including Qwen2.5-Omni-3B's research licence.
+The current video controller uses a confidence rule: text first, then audio and frames if enabled and affordable. Text costs 0.20 effort units, additional audio understanding 0.35, and frames 0.45. These units are neither dollars nor measured compute savings; transcription itself requires audio processing.
+
+Use English videos up to three minutes long. Scores are uncalibrated, the text model was trained on tweets, and audio/frame sampling can miss details. A silent clip cannot establish a review opinion. Real-review benchmark accuracy has not been established. The learned acquisition policy and its results remain in the separate [synthetic experiment](docs/synthetic.md).
+
+Claude requires `ANTHROPIC_API_KEY` and `--backend claude`. It receives acquired transcripts, frames, and any existing audio-score summary; speech recognition and native audio processing stay local. No API key is stored in configuration.
+
+For contributors: `python -m pip install -e ".[dev,video]"`, then `python -m pytest -q`. Read the [video method](docs/video.md), [verification evidence](reports/video/README.md), and [prior-work review](docs/prior_work.md). Source is MIT; downloaded models keep their own licences, including Qwen's research licence.

@@ -124,11 +124,9 @@ class LocalBackend:
         if self.device != 'cuda':
             raise RuntimeError('Native audio/vision inference needs a CUDA GPU in this setup. Text still runs on CPU.')
         from transformers import BitsAndBytesConfig, Qwen2_5OmniForConditionalGeneration, Qwen2_5OmniProcessor
-        path = self._path('multimodal')
         cached = self.model_root/('qwen-omni-nf4-'+MODELS['multimodal']['revision'][:8])
         ready = (cached/'modalenough-ready.json').is_file()
-        if ready:
-            path = cached
+        path = cached if ready else self._path('multimodal')
         self._processor = Qwen2_5OmniProcessor.from_pretrained(path, local_files_only=True, use_fast=False)
         quantization = BitsAndBytesConfig(load_in_4bit=True, bnb_4bit_quant_type='nf4', bnb_4bit_compute_dtype=torch.bfloat16, bnb_4bit_use_double_quant=True)
         settings = dict(dtype=torch.bfloat16, device_map={'': 0}, low_cpu_mem_usage=True, attn_implementation='sdpa', enable_audio_output=False, local_files_only=True)

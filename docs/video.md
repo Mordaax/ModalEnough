@@ -4,7 +4,7 @@ The video CLI accepts a local review clip, predicts positive, negative, or neutr
 
 ## Start here
 
-Run commands from the repository root. FFmpeg and FFprobe must be on PATH. The tested machine has Python 3.13, 32 GB RAM, an RTX 5060 Ti with 16 GB VRAM, and CUDA-enabled PyTorch 2.9.0.
+Install from the repository root; the installed `modalenough` command then works from any directory. FFmpeg and FFprobe must be on PATH. The tested machine has Python 3.13, 32 GB RAM, an RTX 5060 Ti with 16 GB VRAM, and CUDA-enabled PyTorch 2.9.0.
 
 ```powershell
 python -m venv .venv
@@ -16,7 +16,7 @@ python -m venv .venv
 
 The pipeline accepts an English video up to three minutes long and writes its result as JSON. Use `--budget` to limit acquisition or `--all` to process every affordable input.
 
-The pinned model downloads include roughly 12 GB for the original multimodal checkpoint, plus speech and text models. The first native audio/frame request creates a smaller NF4 cache with speech generation disabled. It can take several minutes on a slow drive. Both caches live under ignored `runs/models/`; no weights are committed. Later requests reuse the quantized cache, and a reused `LocalBackend` instance retains loaded models between predictions.
+The pinned model downloads include roughly 12 GB for the original multimodal checkpoint, plus speech and text models. The first native audio/frame request creates a smaller NF4 cache with speech generation disabled. It can take several minutes on a slow drive. Both caches live in the configured model directory; an existing checkout's `runs/models/` is reused. No weights are committed. Later requests reuse the quantized cache, and a batch retains loaded models between predictions.
 
 For CPU-only transcript inference, install the video extra, download with `--text-only`, and run `predict review.mp4 --device cpu --budget 0.2`. Native audio/image inference in this implementation requires CUDA. A CPU-only PyTorch wheel won't detect an NVIDIA card even when one is installed; check `torch.version.cuda` as well as `nvidia-smi`.
 
@@ -48,7 +48,7 @@ Claude receives the acquired transcript and, after a vision request, sampled JPE
 
 Video inputs are local paths. FFprobe checks their duration and dimensions before inference; decoder subprocesses have bounded timeouts and restricted local formats/protocols. Remote URLs are rejected.
 
-The CLI saves each result and acquired evidence under an ignored UUID directory in `runs/video-cli/`. `--output` also writes the result to your chosen JSON path. The original video is read without being copied or changed. Local mode sends no review content to a model API; selecting Claude sends only the acquired evidence described above. Keep generated transcripts and frames private when the source video is private.
+The CLI saves each result and acquired evidence in its run directory under the configured output root. Batch CSV/Markdown summaries and a manifest support file-level resume; see the [CLI reference](cli.md). `--output` also writes the result to your chosen JSON path. The original video is read without being copied or changed. Local mode sends no review content to a model API; selecting Claude sends only the acquired evidence described above. Keep generated transcripts and frames private when the source video is private.
 
 ## Verify it
 

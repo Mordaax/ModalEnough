@@ -1,0 +1,94 @@
+{
+  "release": "0.3.0",
+  "verification_date": "2026-10-25 Asia/Singapore",
+  "fixture_source": "Locally synthesized English reviews over plain video, plus a silent fixture. These are operational smoke checks, not a natural-review accuracy benchmark.",
+  "working_directory": "C:/Users/cyrus/Desktop/GSocAI",
+  "runtime": "RTX 5060 Ti; PyTorch 2.9.0+cu128; Windows Python 3.13",
+  "results": [
+    {
+      "fixture": "positive.mp4",
+      "fixture_sha256": "e6a27357466b3c4adf1a382a46ef2d5527f2412c582cdb874151f96e75f6720e",
+      "status": "complete",
+      "prediction": "positive",
+      "used_inputs": [
+        "text",
+        "audio",
+        "vision"
+      ],
+      "cost": 1.0,
+      "elapsed_seconds": 122.392,
+      "stopping_reason": "all_requested_inputs_processed",
+      "started_at": "2026-10-25T02:36:31.482473+00:00",
+      "finished_at": "2026-10-25T02:38:33.964956+00:00"
+    },
+    {
+      "fixture": "negative.mp4",
+      "fixture_sha256": "1e49cdab23c221f8ad28122cd57efc29c6701da64f42f4a4be4aed1eec96ef1e",
+      "status": "complete",
+      "prediction": "negative",
+      "used_inputs": [
+        "text",
+        "audio",
+        "vision"
+      ],
+      "cost": 1.0,
+      "elapsed_seconds": 1.444,
+      "stopping_reason": "all_requested_inputs_processed",
+      "started_at": "2026-10-25T02:38:33.995685+00:00",
+      "finished_at": "2026-10-25T02:38:35.530697+00:00"
+    },
+    {
+      "fixture": "silent.mp4",
+      "fixture_sha256": "c5ad4790cba70c3cb302f117b56521be219e56df290dbb016f9d1cbb0446f61e",
+      "status": "complete",
+      "prediction": null,
+      "used_inputs": [
+        "vision"
+      ],
+      "cost": 0.45,
+      "elapsed_seconds": 0.994,
+      "stopping_reason": "no_linguistic_evidence",
+      "started_at": "2026-10-25T02:38:35.560161+00:00",
+      "finished_at": "2026-10-25T02:38:36.638737+00:00"
+    }
+  ],
+  "resume_checks": {
+    "completed_jobs_reused": 3,
+    "all_attempt_counts_unchanged": true
+  },
+  "tests_passed": 102,
+  "new_cli_modules_statement_coverage_percent": 92.91,
+  "static_checks": {
+    "black": "passed",
+    "ruff": "passed",
+    "mypy_strict_windows": "passed",
+    "mypy_strict_linux_platform": "passed"
+  },
+  "wheel": {
+    "file": "selective_multimodal-0.3.0-py3-none-any.whl",
+    "sha256": "9f40490aeb22df951e35e481beb99ec605d1bb44712117ac93576fe9f05a39e2",
+    "all_video_module_bytes_match_source": true,
+    "contains_web_ui": false,
+    "separate_environment_install_and_outside_directory_entrypoint": "passed",
+    "outside_directory_actual_transcript_inference": "passed: positive and negative fixtures; source imported from wheel installation; existing inference dependencies reused"
+  },
+  "claude_live_call_verified": false,
+  "github_ci_verified": false,
+  "models": {
+    "text": {
+      "id": "cardiffnlp/twitter-roberta-base-sentiment-latest",
+      "revision": "3216a57f2a0d9c45a2e6c20157c20c49fb4bf9c7",
+      "directory": "sentiment"
+    },
+    "speech": {
+      "id": "Systran/faster-whisper-base.en",
+      "revision": "3d3d5dee26484f91867d81cb899cfcf72b96be6c",
+      "directory": "whisper-base.en"
+    },
+    "multimodal": {
+      "id": "Qwen/Qwen2.5-Omni-3B",
+      "revision": "f75b40e3da2003cdd6e1829b1f420ca70797c34e",
+      "directory": "qwen-omni"
+    }
+  }
+}

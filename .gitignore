@@ -11,3 +11,11 @@ build/
 .env
 .env.*
 !.env.example
+
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# Keep agent planning notes local.
+docs/superpowers/
