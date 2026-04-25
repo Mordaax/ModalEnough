@@ -1,0 +1,8 @@
+{
+  "control": "training labels shuffled; validation/test labels preserved; validation selection remains enabled",
+  "true_label_accuracy": 0.8913649025069638,
+  "shuffled_label_accuracy": 0.5181058495821727,
+  "chance_reference": 0.5,
+  "passed": true,
+  "interpretation": "Preliminary held-out learning diagnostic; no guaranteed outcome"
+}

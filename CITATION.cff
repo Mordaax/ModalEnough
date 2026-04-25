@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "If you use this prototype, cite the software and the underlying datasets/methods separately."
+title: "Selective Multimodal: Budgeted Acquisition Prototype"
+type: software
+version: 0.1.0
+date-released: 2026-10-24
+license: MIT
+authors:
+  - family-names: "Selective Multimodal contributors"

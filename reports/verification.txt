@@ -1,0 +1,7 @@
+...............................                                          [100%]
+31 passed in 4.21s
+
+Installed H: environment end-to-end reproduction: exit 0.
+121 metrics rows exactly equal saved seed-7 metrics.
+Three seeds completed; all computed shuffled-label diagnostic checks passed.
+Independent review: provenance and optimizer-state findings fixed with regressions.

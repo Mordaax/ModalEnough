@@ -1,0 +1,19 @@
+seed: 7
+samples: 1800
+dimensions: [12, 10, 8]
+classes: 2
+hidden: 24
+policy_hidden: 48
+costs: [0.2, 0.35, 0.45]
+initial: 0
+budgets: [0.2, 0.55, 1.0]
+lambda: 0.35
+rho: 0.5
+predictor_epochs: 45
+policy_epochs: 40
+batch_size: 128
+learning_rate: 0.003
+train_noise: 0.1
+confidence_threshold: 0.85
+reject_threshold: 0.6
+run_dir: runs/demo

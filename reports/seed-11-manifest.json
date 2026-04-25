@@ -1,0 +1,52 @@
+{
+  "seed": 11,
+  "dataset_sha256": "31c9d36c6a775201ecfbd0e3c8afc224d9b24fb63927354e3a2e80206692c8d7",
+  "data_kind": "controlled synthetic features",
+  "class_mapping": {
+    "0": "synthetic negative class",
+    "1": "synthetic positive class"
+  },
+  "generation": {
+    "availability_probability": 0.88,
+    "conflict_probability": 0.06,
+    "signal_strength": [
+      2.5,
+      0.35
+    ],
+    "context_cue": "noisy feature columns 2:4; latent context not returned"
+  },
+  "splits": {
+    "train": {
+      "samples": 1080,
+      "class_counts": [
+        528,
+        552
+      ]
+    },
+    "validation": {
+      "samples": 360,
+      "class_counts": [
+        166,
+        194
+      ]
+    },
+    "test": {
+      "samples": 360,
+      "class_counts": [
+        189,
+        171
+      ]
+    }
+  },
+  "versions": {
+    "torch": "2.9.0",
+    "numpy": "2.5.4",
+    "scikit-learn": "1.9.1",
+    "matplotlib": "3.10.7",
+    "PyYAML": "6.0.2"
+  },
+  "python": "3.13.17 (tags/v3.13.17:64e080d, Oct 21 2026, 14:08:53) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "cost_model": "simulated cached feature acquisition; initial cost charged",
+  "created_date": "2026-10-24"
+}

@@ -1,0 +1,6 @@
+# TEMPLATE ONLY: obtain permitted aligned vectors and official splits first.
+# The synthetic config is the runnable supported experiment.
+# Copy it, replace dimensions with actual feature widths, record feature
+# provenance/label mapping, and place your contract NPZ in run_dir/features.npz.
+# Do not run make-synthetic/reproduce on a real-data configuration.
+status: deferred_pending_dataset_provenance
