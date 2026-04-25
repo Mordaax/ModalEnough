@@ -1,0 +1,19 @@
+{
+  "src/selective_multimodal/__init__.py": "7694f21ab3421a7155250e28d6b1444ed1e554f4fa9150ffc85348874a30f573",
+  "src/selective_multimodal/checkpoint.py": "5dbcd96851bc49d12c82365dc0a4bc22b88a94bb33c28f4c551aa0f36a7f7cc6",
+  "src/selective_multimodal/cli.py": "ec68bda2941f64954c61b2ad4b17a118413159976a58f1f00ce1cdc4b9b41c25",
+  "src/selective_multimodal/costs.py": "c5a296a079a5a75e666ee5b6aae19205d2d9afea0e06c016a0e6da3378e57fd9",
+  "src/selective_multimodal/data.py": "0418b06842e38598affc30ac2ed162280d12e13d51ee69802d2613cc966b1620",
+  "src/selective_multimodal/evaluate.py": "919a7386038dd6eb6e69db22842502e038e451d8032553ee5921765587b3326c",
+  "src/selective_multimodal/models.py": "a7db97aebdb8d8fe122792fd3dfef6470c9bcbff0a108a5f6f4f6119bc98c734",
+  "src/selective_multimodal/policy.py": "19b6b8decd490099f55619cb5282633b808f2ad53cb10c0fb645db30f54e9522",
+  "src/selective_multimodal/synthetic.py": "9be50857c2a8f0eb63df479425ea14e067e4f7a9102bbef5f7092e492f9ddb65",
+  "src/selective_multimodal/train_policy.py": "70e21d39818f57e0ceff88c28b455ff3eaf40117aaa87d0169844f047530cb74",
+  "src/selective_multimodal/train_predictor.py": "582ebf813dc24c6932cc60fc398c6a58890eb10537dddb8712b8951a8d91205a",
+  "src/selective_multimodal/video/__init__.py": "69f6a9ea76b949fcc4f21680ae938f0beccba18189c4930b79bc07c165eea9e6",
+  "src/selective_multimodal/video/backends.py": "fd971fffee9f10594dc04fd69458f8bf7e69776fe873a795ae1e06415ae1fae0",
+  "src/selective_multimodal/video/cli.py": "60a1b7da7757775b34b77a43d8cef0399ccd9b16c758be45d5a358645165be02",
+  "src/selective_multimodal/video/media.py": "b2669240dd42ff1acfa51f3a20c83f78831ed46852222dfb2d2c71736d6ccc06",
+  "src/selective_multimodal/video/pipeline.py": "2010978b6bc4b2bd298d5d8dd3febb061008dfa34bddeff107054cced3d87bec",
+  "tests/test_video.py": "b06810754065ac0c2cd6b5c656d7fe5c9f8a1e1e3a1c33bddd0a3f4a8aa9f1fe"
+}

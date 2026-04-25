@@ -1,0 +1,708 @@
+{
+  "date": "2026-10-25 Asia/Singapore",
+  "fixture_source": "Windows System.Speech synthesized review sentences over plain video; not natural-video benchmark data",
+  "fixture_sha256": {
+    "positive.mp4": "e6a27357466b3c4adf1a382a46ef2d5527f2412c582cdb874151f96e75f6720e",
+    "negative.mp4": "1e49cdab23c221f8ad28122cd57efc29c6701da64f42f4a4be4aed1eec96ef1e",
+    "silent.mp4": "c5ad4790cba70c3cb302f117b56521be219e56df290dbb016f9d1cbb0446f61e"
+  },
+  "checks": {
+    "positive_text": true,
+    "negative_text": true,
+    "positive_native_all": true,
+    "silent_abstention": true,
+    "negative_native_all": true
+  },
+  "models": {
+    "text": {
+      "id": "cardiffnlp/twitter-roberta-base-sentiment-latest",
+      "revision": "3216a57f2a0d9c45a2e6c20157c20c49fb4bf9c7",
+      "directory": "sentiment"
+    },
+    "speech": {
+      "id": "Systran/faster-whisper-base.en",
+      "revision": "3d3d5dee26484f91867d81cb899cfcf72b96be6c",
+      "directory": "whisper-base.en"
+    },
+    "multimodal": {
+      "id": "Qwen/Qwen2.5-Omni-3B",
+      "revision": "f75b40e3da2003cdd6e1829b1f420ca70797c34e",
+      "directory": "qwen-omni"
+    }
+  },
+  "results": {
+    "positive_text": {
+      "prediction": "positive",
+      "decision": "predict",
+      "scores": {
+        "negative": 0.004021983324693632,
+        "neutral": 0.007518440852610529,
+        "positive": 0.9884595758226958
+      },
+      "score_note": "Relative model scores; not calibrated probabilities of correctness.",
+      "acquired": [
+        "text"
+      ],
+      "used_inputs": [
+        "text"
+      ],
+      "cost": 0.2,
+      "budget": 0.2,
+      "threshold": 0.85,
+      "policy": "confidence_baseline",
+      "strategy": "adaptive",
+      "steps": [
+        {
+          "modality": "text",
+          "incremental_cost": 0.2,
+          "total_cost": 0.2,
+          "status": "complete",
+          "scores": {
+            "negative": 0.004021983324693632,
+            "neutral": 0.007518440852610529,
+            "positive": 0.9884595758226958
+          },
+          "model": "cardiffnlp/twitter-roberta-base-sentiment-latest",
+          "evidence": {
+            "transcript": "I really love this camera. The image quality is excellent and the battery lasts all day. I would absolutely recommend it.",
+            "segments": [
+              {
+                "start": 0.0,
+                "end": 2.32,
+                "text": "I really love this camera.",
+                "no_speech_probability": 0.0006580352783203125
+              },
+              {
+                "start": 2.32,
+                "end": 6.28,
+                "text": "The image quality is excellent and the battery lasts all day.",
+                "no_speech_probability": 0.0006580352783203125
+              },
+              {
+                "start": 6.28,
+                "end": 7.92,
+                "text": "I would absolutely recommend it.",
+                "no_speech_probability": 0.0006580352783203125
+              }
+            ],
+            "speech_model": "Systran/faster-whisper-base.en"
+          },
+          "details": "Local speech recognition followed by three-class text sentiment. The complete transcript is processed in token chunks.",
+          "elapsed_seconds": 5.927
+        }
+      ],
+      "errors": [],
+      "stopping_reason": "sufficient_evidence",
+      "elapsed_seconds": 5.967,
+      "media": {
+        "duration": 8.798005,
+        "has_audio": true,
+        "has_video": true,
+        "width": 640,
+        "height": 360
+      },
+      "runtime": {
+        "backend": "local",
+        "device": "cuda",
+        "gpu": "NVIDIA GeForce RTX 5060 Ti",
+        "torch": "2.9.0+cu128",
+        "loaded": {
+          "speech": true,
+          "text": true,
+          "multimodal": false
+        },
+        "models": {
+          "text": {
+            "id": "cardiffnlp/twitter-roberta-base-sentiment-latest",
+            "revision": "3216a57f2a0d9c45a2e6c20157c20c49fb4bf9c7",
+            "directory": "sentiment"
+          },
+          "speech": {
+            "id": "Systran/faster-whisper-base.en",
+            "revision": "3d3d5dee26484f91867d81cb899cfcf72b96be6c",
+            "directory": "whisper-base.en"
+          },
+          "multimodal": {
+            "id": "Qwen/Qwen2.5-Omni-3B",
+            "revision": "f75b40e3da2003cdd6e1829b1f420ca70797c34e",
+            "directory": "qwen-omni"
+          }
+        }
+      },
+      "cost_note": "Configured effort units, not money. Text includes audio decoding and speech recognition; audio is an additional understanding pass."
+    },
+    "negative_text": {
+      "prediction": "negative",
+      "decision": "predict",
+      "scores": {
+        "negative": 0.9613626361400871,
+        "neutral": 0.03271085145737423,
+        "positive": 0.005926512402538672
+      },
+      "score_note": "Relative model scores; not calibrated probabilities of correctness.",
+      "acquired": [
+        "text"
+      ],
+      "used_inputs": [
+        "text"
+      ],
+      "cost": 0.2,
+      "budget": 0.2,
+      "threshold": 0.85,
+      "policy": "confidence_baseline",
+      "strategy": "adaptive",
+      "steps": [
+        {
+          "modality": "text",
+          "incremental_cost": 0.2,
+          "total_cost": 0.2,
+          "status": "complete",
+          "scores": {
+            "negative": 0.9613626361400871,
+            "neutral": 0.03271085145737423,
+            "positive": 0.005926512402538672
+          },
+          "model": "cardiffnlp/twitter-roberta-base-sentiment-latest",
+          "evidence": {
+            "transcript": "I really hate this camera. The picture quality is terrible and the battery dies after an hour. I regret buying it and I would not recommend it.",
+            "segments": [
+              {
+                "start": 0.0,
+                "end": 2.24,
+                "text": "I really hate this camera.",
+                "no_speech_probability": 0.0007991790771484375
+              },
+              {
+                "start": 2.24,
+                "end": 6.68,
+                "text": "The picture quality is terrible and the battery dies after an hour.",
+                "no_speech_probability": 0.0007991790771484375
+              },
+              {
+                "start": 6.68,
+                "end": 9.0,
+                "text": "I regret buying it and I would not recommend it.",
+                "no_speech_probability": 0.0007991790771484375
+              }
+            ],
+            "speech_model": "Systran/faster-whisper-base.en"
+          },
+          "details": "Local speech recognition followed by three-class text sentiment. The complete transcript is processed in token chunks.",
+          "elapsed_seconds": 6.141
+        }
+      ],
+      "errors": [],
+      "stopping_reason": "sufficient_evidence",
+      "elapsed_seconds": 6.186,
+      "media": {
+        "duration": 9.847982,
+        "has_audio": true,
+        "has_video": true,
+        "width": 640,
+        "height": 360
+      },
+      "runtime": {
+        "backend": "local",
+        "device": "cuda",
+        "gpu": "NVIDIA GeForce RTX 5060 Ti",
+        "torch": "2.9.0+cu128",
+        "loaded": {
+          "speech": true,
+          "text": true,
+          "multimodal": false
+        },
+        "models": {
+          "text": {
+            "id": "cardiffnlp/twitter-roberta-base-sentiment-latest",
+            "revision": "3216a57f2a0d9c45a2e6c20157c20c49fb4bf9c7",
+            "directory": "sentiment"
+          },
+          "speech": {
+            "id": "Systran/faster-whisper-base.en",
+            "revision": "3d3d5dee26484f91867d81cb899cfcf72b96be6c",
+            "directory": "whisper-base.en"
+          },
+          "multimodal": {
+            "id": "Qwen/Qwen2.5-Omni-3B",
+            "revision": "f75b40e3da2003cdd6e1829b1f420ca70797c34e",
+            "directory": "qwen-omni"
+          }
+        }
+      },
+      "cost_note": "Configured effort units, not money. Text includes audio decoding and speech recognition; audio is an additional understanding pass."
+    },
+    "positive_all": {
+      "prediction": "positive",
+      "decision": "predict",
+      "scores": {
+        "negative": 0.0007079168892262633,
+        "positive": 0.9968212101684232,
+        "neutral": 0.002470872942350588
+      },
+      "score_note": "Relative model scores; not calibrated probabilities of correctness.",
+      "acquired": [
+        "text",
+        "audio",
+        "vision"
+      ],
+      "used_inputs": [
+        "text",
+        "audio",
+        "vision"
+      ],
+      "successful_acquisitions": [
+        "text",
+        "audio",
+        "vision"
+      ],
+      "cost": 1.0,
+      "budget": 1.0,
+      "threshold": 0.85,
+      "policy": "confidence_baseline",
+      "strategy": "all",
+      "steps": [
+        {
+          "modality": "text",
+          "incremental_cost": 0.2,
+          "total_cost": 0.2,
+          "status": "complete",
+          "scores": {
+            "negative": 0.004021983324693632,
+            "neutral": 0.007518440852610529,
+            "positive": 0.9884595758226958
+          },
+          "scoring_inputs": [
+            "text"
+          ],
+          "model": "cardiffnlp/twitter-roberta-base-sentiment-latest",
+          "evidence": {
+            "transcript": "I really love this camera. The image quality is excellent and the battery lasts all day. I would absolutely recommend it.",
+            "segments": [
+              {
+                "start": 0.0,
+                "end": 2.32,
+                "text": "I really love this camera.",
+                "no_speech_probability": 0.0006580352783203125
+              },
+              {
+                "start": 2.32,
+                "end": 6.28,
+                "text": "The image quality is excellent and the battery lasts all day.",
+                "no_speech_probability": 0.0006580352783203125
+              },
+              {
+                "start": 6.28,
+                "end": 7.92,
+                "text": "I would absolutely recommend it.",
+                "no_speech_probability": 0.0006580352783203125
+              }
+            ],
+            "speech_model": "Systran/faster-whisper-base.en"
+          },
+          "details": "Local speech recognition followed by three-class text sentiment. The complete transcript is processed in token chunks.",
+          "elapsed_seconds": 29.078
+        },
+        {
+          "modality": "audio",
+          "incremental_cost": 0.35,
+          "total_cost": 0.55,
+          "status": "complete",
+          "scores": {
+            "negative": 0.00023020135709722297,
+            "positive": 0.9984450812382616,
+            "neutral": 0.0013247174046412118
+          },
+          "scoring_inputs": [
+            "text",
+            "audio"
+          ],
+          "model": "Qwen/Qwen2.5-Omni-3B",
+          "evidence": {
+            "windows": [
+              {
+                "start": 0.0,
+                "end": 8.824
+              }
+            ],
+            "sample_rate": 16000
+          },
+          "details": "Native audio understanding on up to three 10-second windows, with the already acquired transcript as context.",
+          "elapsed_seconds": 380.351
+        },
+        {
+          "modality": "vision",
+          "incremental_cost": 0.45,
+          "total_cost": 1.0,
+          "status": "complete",
+          "scores": {
+            "negative": 0.0007079168892262633,
+            "positive": 0.9968212101684232,
+            "neutral": 0.002470872942350588
+          },
+          "scoring_inputs": [
+            "text",
+            "audio",
+            "vision"
+          ],
+          "model": "Qwen/Qwen2.5-Omni-3B",
+          "evidence": {
+            "frames": [
+              {
+                "file": "frame_00.jpg",
+                "timestamp": 1.1
+              },
+              {
+                "file": "frame_01.jpg",
+                "timestamp": 3.299
+              },
+              {
+                "file": "frame_02.jpg",
+                "timestamp": 5.499
+              },
+              {
+                "file": "frame_03.jpg",
+                "timestamp": 7.698
+              }
+            ],
+            "audio_context_windows": [
+              {
+                "start": 0.0,
+                "end": 8.824
+              }
+            ]
+          },
+          "details": "Four sampled frames with the acquired transcript and, when already acquired, the audio windows. Visual appearance alone is insufficient to establish a review opinion.",
+          "elapsed_seconds": 1.681
+        }
+      ],
+      "errors": [],
+      "stopping_reason": "all_requested_inputs_processed",
+      "elapsed_seconds": 411.153,
+      "media": {
+        "duration": 8.798005,
+        "has_audio": true,
+        "has_video": true,
+        "width": 640,
+        "height": 360
+      },
+      "runtime": {
+        "backend": "local",
+        "device": "cuda",
+        "gpu": "NVIDIA GeForce RTX 5060 Ti",
+        "torch": "2.9.0+cu128",
+        "loaded": {
+          "speech": true,
+          "text": true,
+          "multimodal": true
+        },
+        "models": {
+          "text": {
+            "id": "cardiffnlp/twitter-roberta-base-sentiment-latest",
+            "revision": "3216a57f2a0d9c45a2e6c20157c20c49fb4bf9c7",
+            "directory": "sentiment"
+          },
+          "speech": {
+            "id": "Systran/faster-whisper-base.en",
+            "revision": "3d3d5dee26484f91867d81cb899cfcf72b96be6c",
+            "directory": "whisper-base.en"
+          },
+          "multimodal": {
+            "id": "Qwen/Qwen2.5-Omni-3B",
+            "revision": "f75b40e3da2003cdd6e1829b1f420ca70797c34e",
+            "directory": "qwen-omni"
+          }
+        }
+      },
+      "cost_note": "Configured effort units, not money. Text includes audio decoding and speech recognition; audio is an additional understanding pass."
+    },
+    "negative_all": {
+      "prediction": "negative",
+      "decision": "predict",
+      "scores": {
+        "negative": 0.990527018526938,
+        "positive": 0.0009032437089272086,
+        "neutral": 0.00856973776413474
+      },
+      "score_note": "Relative model scores; not calibrated probabilities of correctness.",
+      "acquired": [
+        "text",
+        "audio",
+        "vision"
+      ],
+      "used_inputs": [
+        "text",
+        "audio",
+        "vision"
+      ],
+      "successful_acquisitions": [
+        "text",
+        "audio",
+        "vision"
+      ],
+      "cost": 1.0,
+      "budget": 1.0,
+      "threshold": 0.85,
+      "policy": "confidence_baseline",
+      "strategy": "all",
+      "steps": [
+        {
+          "modality": "text",
+          "incremental_cost": 0.2,
+          "total_cost": 0.2,
+          "status": "complete",
+          "scores": {
+            "negative": 0.9613626361400871,
+            "neutral": 0.03271085145737423,
+            "positive": 0.005926512402538672
+          },
+          "scoring_inputs": [
+            "text"
+          ],
+          "model": "cardiffnlp/twitter-roberta-base-sentiment-latest",
+          "evidence": {
+            "transcript": "I really hate this camera. The picture quality is terrible and the battery dies after an hour. I regret buying it and I would not recommend it.",
+            "segments": [
+              {
+                "start": 0.0,
+                "end": 2.24,
+                "text": "I really hate this camera.",
+                "no_speech_probability": 0.0007991790771484375
+              },
+              {
+                "start": 2.24,
+                "end": 6.68,
+                "text": "The picture quality is terrible and the battery dies after an hour.",
+                "no_speech_probability": 0.0007991790771484375
+              },
+              {
+                "start": 6.68,
+                "end": 9.0,
+                "text": "I regret buying it and I would not recommend it.",
+                "no_speech_probability": 0.0007991790771484375
+              }
+            ],
+            "speech_model": "Systran/faster-whisper-base.en"
+          },
+          "details": "Local speech recognition followed by three-class text sentiment. The complete transcript is processed in token chunks.",
+          "elapsed_seconds": 46.687
+        },
+        {
+          "modality": "audio",
+          "incremental_cost": 0.35,
+          "total_cost": 0.55,
+          "status": "complete",
+          "scores": {
+            "negative": 0.9971107065729973,
+            "positive": 0.0007081224921798725,
+            "neutral": 0.002181170934822838
+          },
+          "scoring_inputs": [
+            "text",
+            "audio"
+          ],
+          "model": "Qwen/Qwen2.5-Omni-3B",
+          "evidence": {
+            "windows": [
+              {
+                "start": 0.0,
+                "end": 9.892
+              }
+            ],
+            "sample_rate": 16000
+          },
+          "details": "Native audio understanding on up to three 10-second windows, with the already acquired transcript as context.",
+          "elapsed_seconds": 99.657
+        },
+        {
+          "modality": "vision",
+          "incremental_cost": 0.45,
+          "total_cost": 1.0,
+          "status": "complete",
+          "scores": {
+            "negative": 0.990527018526938,
+            "positive": 0.0009032437089272086,
+            "neutral": 0.00856973776413474
+          },
+          "scoring_inputs": [
+            "text",
+            "audio",
+            "vision"
+          ],
+          "model": "Qwen/Qwen2.5-Omni-3B",
+          "evidence": {
+            "frames": [
+              {
+                "file": "frame_00.jpg",
+                "timestamp": 1.231
+              },
+              {
+                "file": "frame_01.jpg",
+                "timestamp": 3.693
+              },
+              {
+                "file": "frame_02.jpg",
+                "timestamp": 6.155
+              },
+              {
+                "file": "frame_03.jpg",
+                "timestamp": 8.617
+              }
+            ],
+            "audio_context_windows": [
+              {
+                "start": 0.0,
+                "end": 9.892
+              }
+            ]
+          },
+          "details": "Four sampled frames with the acquired transcript and, when already acquired, the audio windows. Visual appearance alone is insufficient to establish a review opinion.",
+          "elapsed_seconds": 1.339
+        }
+      ],
+      "errors": [],
+      "stopping_reason": "all_requested_inputs_processed",
+      "elapsed_seconds": 147.838,
+      "media": {
+        "duration": 9.847982,
+        "has_audio": true,
+        "has_video": true,
+        "width": 640,
+        "height": 360
+      },
+      "runtime": {
+        "backend": "local",
+        "device": "cuda",
+        "gpu": "NVIDIA GeForce RTX 5060 Ti",
+        "torch": "2.9.0+cu128",
+        "loaded": {
+          "speech": true,
+          "text": true,
+          "multimodal": true
+        },
+        "models": {
+          "text": {
+            "id": "cardiffnlp/twitter-roberta-base-sentiment-latest",
+            "revision": "3216a57f2a0d9c45a2e6c20157c20c49fb4bf9c7",
+            "directory": "sentiment"
+          },
+          "speech": {
+            "id": "Systran/faster-whisper-base.en",
+            "revision": "3d3d5dee26484f91867d81cb899cfcf72b96be6c",
+            "directory": "whisper-base.en"
+          },
+          "multimodal": {
+            "id": "Qwen/Qwen2.5-Omni-3B",
+            "revision": "f75b40e3da2003cdd6e1829b1f420ca70797c34e",
+            "directory": "qwen-omni"
+          }
+        }
+      },
+      "cost_note": "Configured effort units, not money. Text includes audio decoding and speech recognition; audio is an additional understanding pass."
+    },
+    "silent": {
+      "prediction": null,
+      "decision": "abstain",
+      "scores": {
+        "negative": 0.41027654974828515,
+        "positive": 0.06291794589406413,
+        "neutral": 0.5268055043576507
+      },
+      "score_note": "Relative model scores; not calibrated probabilities of correctness.",
+      "acquired": [
+        "vision"
+      ],
+      "used_inputs": [
+        "vision"
+      ],
+      "successful_acquisitions": [
+        "vision"
+      ],
+      "cost": 0.45,
+      "budget": 1.0,
+      "threshold": 0.85,
+      "policy": "confidence_baseline",
+      "strategy": "all",
+      "steps": [
+        {
+          "modality": "vision",
+          "incremental_cost": 0.45,
+          "total_cost": 0.45,
+          "status": "complete",
+          "scores": {
+            "negative": 0.41027654974828515,
+            "positive": 0.06291794589406413,
+            "neutral": 0.5268055043576507
+          },
+          "scoring_inputs": [
+            "vision"
+          ],
+          "model": "Qwen/Qwen2.5-Omni-3B",
+          "evidence": {
+            "frames": [
+              {
+                "file": "frame_00.jpg",
+                "timestamp": 0.25
+              },
+              {
+                "file": "frame_01.jpg",
+                "timestamp": 0.75
+              },
+              {
+                "file": "frame_02.jpg",
+                "timestamp": 1.25
+              },
+              {
+                "file": "frame_03.jpg",
+                "timestamp": 1.75
+              }
+            ],
+            "audio_context_windows": []
+          },
+          "details": "Four sampled frames with the acquired transcript and, when already acquired, the audio windows. Visual appearance alone is insufficient to establish a review opinion.",
+          "elapsed_seconds": 0.995
+        }
+      ],
+      "errors": [],
+      "stopping_reason": "no_linguistic_evidence",
+      "elapsed_seconds": 1.039,
+      "media": {
+        "duration": 2.0,
+        "has_audio": false,
+        "has_video": true,
+        "width": 320,
+        "height": 240
+      },
+      "runtime": {
+        "backend": "local",
+        "device": "cuda",
+        "gpu": "NVIDIA GeForce RTX 5060 Ti",
+        "torch": "2.9.0+cu128",
+        "loaded": {
+          "speech": true,
+          "text": true,
+          "multimodal": true
+        },
+        "models": {
+          "text": {
+            "id": "cardiffnlp/twitter-roberta-base-sentiment-latest",
+            "revision": "3216a57f2a0d9c45a2e6c20157c20c49fb4bf9c7",
+            "directory": "sentiment"
+          },
+          "speech": {
+            "id": "Systran/faster-whisper-base.en",
+            "revision": "3d3d5dee26484f91867d81cb899cfcf72b96be6c",
+            "directory": "whisper-base.en"
+          },
+          "multimodal": {
+            "id": "Qwen/Qwen2.5-Omni-3B",
+            "revision": "f75b40e3da2003cdd6e1829b1f420ca70797c34e",
+            "directory": "qwen-omni"
+          }
+        }
+      },
+      "cost_note": "Configured effort units, not money. Text includes audio decoding and speech recognition; audio is an additional understanding pass."
+    }
+  },
+  "claude_live_call_verified": false,
+  "reason": "No API key supplied; no paid calls made."
+}
